@@ -212,7 +212,7 @@ export const Contact: React.FC = () => {
                   htmlFor="name"
                   className="block text-sm font-medium dark:text-white"
                 >
-                  Name
+                  What's Your Name?
                 </label>
                 <input
                   type="text"
@@ -235,7 +235,7 @@ export const Contact: React.FC = () => {
                   htmlFor="email"
                   className="block text-sm font-medium dark:text-white"
                 >
-                  Email
+                  How Can We Reach You?
                 </label>
                 <input
                   type="email"
@@ -258,7 +258,7 @@ export const Contact: React.FC = () => {
                   htmlFor="message"
                   className="block text-sm font-medium dark:text-white"
                 >
-                  Message
+                  Drop Your Thoughts Here
                 </label>
                 <textarea
                   id="message"
