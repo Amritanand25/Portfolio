@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, FileDown } from "lucide-react";
+import { Github, Linkedin, Mail, FileDown, UserRound } from "lucide-react";
 import { ParticlesBackground } from "./ParticlesBackground";
 import { WorkspaceScene } from "./3d/WorkspaceScene";
 import { ScrollIndicator } from "./ScrollIndicator";
@@ -26,7 +26,7 @@ export const Hero: React.FC = () => {
                 className="relative w-32 h-32 mx-auto mb-8"
               >
                 <img
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400&auto=format&fit=crop&q=60"
+                  src="/Amrit-Anand-Image.png"
                   alt="Amrit Anand"
                   className="w-full h-full rounded-full object-cover border-4 border-purple-500 shadow-lg animate-float"
                 />
@@ -42,7 +42,7 @@ export const Hero: React.FC = () => {
                 <motion.a
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
-                  href="https://github.com/yourusername"
+                  href="https://github.com/Amritanand25"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-300 hover:text-purple-400 transition-colors"
@@ -52,7 +52,7 @@ export const Hero: React.FC = () => {
                 <motion.a
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
-                  href="https://linkedin.com/in/yourusername"
+                  href="https://www.linkedin.com/in/amrit-anand-496298169/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-300 hover:text-purple-400 transition-colors"
@@ -66,6 +66,16 @@ export const Hero: React.FC = () => {
                   className="text-gray-300 hover:text-purple-400 transition-colors"
                 >
                   <Mail className="w-8 h-8" />
+                </motion.a>
+                <motion.a
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://drive.google.com/file/d/1Waq9l716vLCs4ebvu2IJDRvp4RC78dRT/view?usp=sharing"
+                  className="text-gray-300 hover:text-purple-400 transition-colors"
+                >
+                  <UserRound className="w-8 h-8" />
                 </motion.a>
               </div>
             </motion.div>

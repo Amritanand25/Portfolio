@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { Mail, Phone, MapPin, Send } from "lucide-react";
 
 interface FormData {
   name: string;
@@ -14,31 +14,81 @@ interface FormErrors {
   message?: string;
 }
 
+interface ApiResponse {
+  response: "success" | "error";
+  data: string;
+}
+
+// const api = 'https://script.google.com/macros/s/AKfycbwP7fK4-wFkeqDIr4_AUJgYyHCjNXQW7x6meHf2AGPTG92DPhs8pe4e3FYd5IS30VV0Aw/exec?path=portfolio-response&action=read'
+
+const baseUrl =
+  "https://script.google.com/macros/s/AKfycbwP7fK4-wFkeqDIr4_AUJgYyHCjNXQW7x6meHf2AGPTG92DPhs8pe4e3FYd5IS30VV0Aw/exec?path=portfolio-response&action=write";
+
 export const Contact: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
-    name: '',
-    email: '',
-    message: '',
+    name: "",
+    email: "",
+    message: "",
   });
+
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
     if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
+      newErrors.name = "Name is required";
     }
     if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
+      newErrors.email = "Email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Invalid email format';
+      newErrors.email = "Invalid email format";
     }
     if (!formData.message.trim()) {
-      newErrors.message = 'Message is required';
+      newErrors.message = "Message is required";
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
+  };
+
+  const sendToGoogleSheet = async (
+    name: string,
+    email: string,
+    message: string
+  ): Promise<ApiResponse> => {
+    const queryParams = `&Name=${name}&Email=${email}&Message=${message}`;
+
+    try {
+      const response = await fetch(baseUrl + queryParams, {
+        method: "GET",
+        redirect: "follow",
+      });
+
+      // if (!response.ok) {
+      //   throw new Error(`HTTP error! Status: ${response.status}`);
+      // }
+
+      // Check for 302 Found or successful status
+      if (response.ok || response.status === 302) {
+        const responseData = await response
+          .json()
+          .catch(() => "Redirect Success");
+        return {
+          response: "success",
+          data: responseData || "Redirect Success",
+        };
+      }
+
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    } catch (error: unknown) {
+      return {
+        response: "error",
+        data: error instanceof Error ? error.message : "Unknown error",
+      };
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -48,22 +98,32 @@ export const Contact: React.FC = () => {
     setIsSubmitting(true);
     try {
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      setSubmitStatus('success');
-      setFormData({ name: '', email: '', message: '' });
+      const response = await sendToGoogleSheet(
+        formData.name,
+        formData.email,
+        formData.message
+      );
+      if (response?.response === "success") {
+        setSubmitStatus("success");
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        setSubmitStatus("error");
+      }
     } catch (error) {
-      setSubmitStatus('error');
+      setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
-      setTimeout(() => setSubmitStatus('idle'), 3000);
+      setTimeout(() => setSubmitStatus("idle"), 3000);
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
     if (errors[name as keyof FormErrors]) {
-      setErrors(prev => ({ ...prev, [name]: undefined }));
+      setErrors((prev) => ({ ...prev, [name]: undefined }));
     }
   };
 
@@ -75,7 +135,9 @@ export const Contact: React.FC = () => {
           whileInView={{ opacity: 1 }}
           className="max-w-4xl mx-auto"
         >
-          <h2 className="text-4xl font-bold mb-12 text-center dark:text-white">Get in Touch</h2>
+          <h2 className="text-4xl font-bold mb-12 text-center dark:text-white">
+            Get in Touch
+          </h2>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="space-y-6">
               <motion.div
@@ -88,8 +150,13 @@ export const Contact: React.FC = () => {
                   <Mail className="w-6 h-6 text-purple-500" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold dark:text-white">Email</h3>
-                  <a href="mailto:amritanand.jnv25@gmail.com" className="text-gray-600 dark:text-gray-300 hover:text-purple-500">
+                  <h3 className="text-lg font-semibold dark:text-white">
+                    Email
+                  </h3>
+                  <a
+                    href="mailto:amritanand.jnv25@gmail.com"
+                    className="text-gray-600 dark:text-gray-300 hover:text-purple-500"
+                  >
                     amritanand.jnv25@gmail.com
                   </a>
                 </div>
@@ -104,8 +171,13 @@ export const Contact: React.FC = () => {
                   <Phone className="w-6 h-6 text-purple-500" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold dark:text-white">Phone</h3>
-                  <a href="tel:+917903047672" className="text-gray-600 dark:text-gray-300 hover:text-purple-500">
+                  <h3 className="text-lg font-semibold dark:text-white">
+                    Phone
+                  </h3>
+                  <a
+                    href="tel:+917903047672"
+                    className="text-gray-600 dark:text-gray-300 hover:text-purple-500"
+                  >
                     +91 7903047672
                   </a>
                 </div>
@@ -120,8 +192,12 @@ export const Contact: React.FC = () => {
                   <MapPin className="w-6 h-6 text-purple-500" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold dark:text-white">Location</h3>
-                  <p className="text-gray-600 dark:text-gray-300">Bangalore, Karnataka, India</p>
+                  <h3 className="text-lg font-semibold dark:text-white">
+                    Location
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    Bangalore, Karnataka, India
+                  </p>
                 </div>
               </motion.div>
             </div>
@@ -132,7 +208,12 @@ export const Contact: React.FC = () => {
               onSubmit={handleSubmit}
             >
               <div>
-                <label htmlFor="name" className="block text-sm font-medium dark:text-white">Name</label>
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium dark:text-white"
+                >
+                  Name
+                </label>
                 <input
                   type="text"
                   id="name"
@@ -140,13 +221,22 @@ export const Contact: React.FC = () => {
                   value={formData.name}
                   onChange={handleChange}
                   className={`mt-1 block w-full rounded-md shadow-sm focus:ring-2 focus:ring-purple-500 dark:bg-gray-800 dark:text-white ${
-                    errors.name ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'
+                    errors.name
+                      ? "border-red-500"
+                      : "border-gray-300 dark:border-gray-700"
                   }`}
                 />
-                {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name}</p>}
+                {errors.name && (
+                  <p className="mt-1 text-sm text-red-500">{errors.name}</p>
+                )}
               </div>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium dark:text-white">Email</label>
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium dark:text-white"
+                >
+                  Email
+                </label>
                 <input
                   type="email"
                   id="email"
@@ -154,13 +244,22 @@ export const Contact: React.FC = () => {
                   value={formData.email}
                   onChange={handleChange}
                   className={`mt-1 block w-full rounded-md shadow-sm focus:ring-2 focus:ring-purple-500 dark:bg-gray-800 dark:text-white ${
-                    errors.email ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'
+                    errors.email
+                      ? "border-red-500"
+                      : "border-gray-300 dark:border-gray-700"
                   }`}
                 />
-                {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email}</p>}
+                {errors.email && (
+                  <p className="mt-1 text-sm text-red-500">{errors.email}</p>
+                )}
               </div>
               <div>
-                <label htmlFor="message" className="block text-sm font-medium dark:text-white">Message</label>
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-medium dark:text-white"
+                >
+                  Message
+                </label>
                 <textarea
                   id="message"
                   name="message"
@@ -168,10 +267,14 @@ export const Contact: React.FC = () => {
                   value={formData.message}
                   onChange={handleChange}
                   className={`mt-1 block w-full rounded-md shadow-sm focus:ring-2 focus:ring-purple-500 dark:bg-gray-800 dark:text-white ${
-                    errors.message ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'
+                    errors.message
+                      ? "border-red-500"
+                      : "border-gray-300 dark:border-gray-700"
                   }`}
                 />
-                {errors.message && <p className="mt-1 text-sm text-red-500">{errors.message}</p>}
+                {errors.message && (
+                  <p className="mt-1 text-sm text-red-500">{errors.message}</p>
+                )}
               </div>
               <motion.button
                 type="submit"
@@ -179,17 +282,21 @@ export const Contact: React.FC = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className={`w-full flex items-center justify-center space-x-2 bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-700 transition-colors ${
-                  isSubmitting ? 'opacity-75 cursor-not-allowed' : ''
+                  isSubmitting ? "opacity-75 cursor-not-allowed" : ""
                 }`}
               >
                 <span>Send Message</span>
                 <Send className="w-4 h-4" />
               </motion.button>
-              {submitStatus === 'success' && (
-                <p className="text-green-500 text-center">Message sent successfully!</p>
+              {submitStatus === "success" && (
+                <p className="text-green-500 text-center">
+                  Message sent successfully!
+                </p>
               )}
-              {submitStatus === 'error' && (
-                <p className="text-red-500 text-center">Failed to send message. Please try again.</p>
+              {submitStatus === "error" && (
+                <p className="text-red-500 text-center">
+                  Failed to send message. Please try again.
+                </p>
               )}
             </motion.form>
           </div>

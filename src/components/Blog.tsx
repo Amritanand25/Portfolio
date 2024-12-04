@@ -1,32 +1,41 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Book, ArrowRight, Clock } from 'lucide-react';
+import React from "react";
+import { motion } from "framer-motion";
+import { Book, ArrowRight, Clock } from "lucide-react";
 
 const blogs = [
   {
-    title: "Modern React Best Practices",
-    excerpt: "Exploring the latest patterns and practices in React development for 2024.",
-    date: "Mar 15, 2024",
-    readTime: "5 min read",
-    image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&auto=format&fit=crop&q=60",
-    category: "React"
+    title: "Data Science Vs Machine Learning",
+    excerpt:
+      "Data Science vs Machine Learning: Core Concepts, Tools, and Real-World Use Cases",
+    date: "Nov 29, 2024",
+    readTime: "4 min read",
+    image:
+      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&auto=format&fit=crop&q=60",
+    category: "Machine Learning",
+    url: "https://www.geeksforgeeks.org/data-science-vs-machine-learning/?itm_source=auth&itm_medium=contributions&itm_campaign=articles",
   },
   {
-    title: "TypeScript Tips and Tricks",
-    excerpt: "Advanced TypeScript features that will make your code more robust.",
-    date: "Mar 10, 2024",
+    title: "Difference between Inner Join and Outer Join in SQL",
+    excerpt:
+      "nner Join vs Outer Join in SQL: Key Differences, Syntax, and Use Cases",
+    date: "Aug 09, 2024",
     readTime: "7 min read",
-    image: "https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=800&auto=format&fit=crop&q=60",
-    category: "TypeScript"
+    image:
+      "https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=800&auto=format&fit=crop&q=60",
+    category: "SQL",
+    url: "https://www.geeksforgeeks.org/difference-between-inner-join-and-outer-join-in-sql/?itm_source=auth&itm_medium=contributions&itm_campaign=articles",
   },
   {
-    title: "Building Scalable Frontend Architecture",
-    excerpt: "A comprehensive guide to structuring large-scale React applications.",
-    date: "Mar 5, 2024",
-    readTime: "10 min read",
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&auto=format&fit=crop&q=60",
-    category: "Architecture"
-  }
+    title: "How to set a value to an input file using HTML?",
+    excerpt:
+      "Understanding the File Input Type in HTML: Syntax, Examples, and Limitations",
+    date: "Jul 22, 2024",
+    readTime: "3 min read",
+    image:
+      "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&auto=format&fit=crop&q=60",
+    category: "HTML",
+    url: "https://www.geeksforgeeks.org/how-to-set-a-value-to-an-input-file-using-html/?itm_source=auth&itm_medium=contributions&itm_campaign=articles",
+  },
 ];
 
 export const Blog: React.FC = () => {
@@ -40,8 +49,12 @@ export const Blog: React.FC = () => {
           className="text-center mb-12"
         >
           <Book className="w-12 h-12 mx-auto mb-4 text-purple-500" />
-          <h2 className="text-4xl font-bold dark:text-white">Latest Insights</h2>
-          <p className="text-gray-600 dark:text-gray-300 mt-2">Sharing knowledge and experiences</p>
+          <h2 className="text-4xl font-bold dark:text-white">
+            Latest Insights
+          </h2>
+          <p className="text-gray-600 dark:text-gray-300 mt-2">
+            Sharing knowledge and experiences
+          </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:mx-12">
@@ -73,13 +86,26 @@ export const Blog: React.FC = () => {
                   <span className="mx-2">•</span>
                   <span>{blog.readTime}</span>
                 </div>
-                <h3 className="text-xl font-bold mb-2 dark:text-white">{blog.title}</h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">{blog.excerpt}</p>
+                <h3 className="text-xl font-bold mb-2 dark:text-white">
+                  {blog.title}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-4">
+                  {blog.excerpt}
+                </p>
                 <motion.button
                   whileHover={{ x: 5 }}
                   className="flex items-center text-purple-500 hover:text-purple-600 transition-colors"
                 >
-                  Read More <ArrowRight className="w-4 h-4 ml-2" />
+                  <motion.a
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    href={blog?.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-purple-400 hover:text-purple-600 transition-colors flex items-center"
+                  >
+                    Read More <ArrowRight className="w-4 h-4 ml-2" />
+                  </motion.a>
                 </motion.button>
               </div>
             </motion.article>

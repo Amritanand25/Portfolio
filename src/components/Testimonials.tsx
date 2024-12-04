@@ -1,27 +1,33 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Quote, ChevronLeft, ChevronRight } from 'lucide-react';
-import useEmblaCarousel from 'embla-carousel-react';
+import React from "react";
+import { motion } from "framer-motion";
+import { Quote, ChevronLeft, ChevronRight } from "lucide-react";
+import useEmblaCarousel from "embla-carousel-react";
 
 const testimonials = [
   {
-    name: "John Smith",
-    role: "Tech Lead at RekordBook",
-    content: "Amrit is an exceptional developer who consistently delivers high-quality code. His attention to detail and problem-solving skills are outstanding.",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&auto=format&fit=crop&q=60"
+    name: "Arunava Das",
+    role: "Product Manager at RekordBook",
+    content:
+      "Amrit Anand consistently delivered high-quality, scalable code with strong problem-solving skills and a proactive approach. His collaboration and dedication to learning make him a valuable asset. Highly recommend him for any development team.",
+    image:
+      "https://media.licdn.com/dms/image/v2/D5603AQEN_A0XPupasA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1726518919842?e=1738800000&v=beta&t=cMWguMRTy8uOAlOXHTGe5DW-LpaWB8vau_v7ETFhLZo",
   },
   {
-    name: "Sarah Johnson",
-    role: "Project Manager at Smart Task",
-    content: "Working with Amrit was a pleasure. His technical expertise and ability to meet deadlines made him an invaluable team member.",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&auto=format&fit=crop&q=60"
+    name: "Shyamal Parikh",
+    role: "CTO & Co-founder at Smart Task",
+    content:
+      "Amrit’s expertise and dedication stood out when he successfully developed complex Azure B2C policies at SmartTask. A skilled professional with a strong work ethic, he’s highly recommended for any organization.",
+    image:
+      "https://media.licdn.com/dms/image/v2/C4E03AQGTtpIUwRsnBw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1637247097342?e=1738800000&v=beta&t=fpUJX-ecwxHJ1Jm2GgneS-b_9XfZefWt-Wrks9PJ1Qo",
   },
   {
-    name: "Michael Chen",
-    role: "CTO at s759labs",
-    content: "Amrit's innovative approach to problem-solving and dedication to learning new technologies sets him apart. He's a true asset to any team.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=60"
-  }
+    name: "Shubham Shekhar",
+    role: "Team lead at s759labs",
+    content:
+      "Amrit is exceptional at delivering end-to-end features and brings invaluable expertise to any organization. Alongside his technical skills, his teamwork is equally commendable. Highly recommend him for a software engineering role.",
+    image:
+      "https://media.licdn.com/dms/image/v2/D5603AQFTqfLfIfFDkw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1694518808205?e=1738800000&v=beta&t=zW7HCoCyc3Uw1z6mY42Fm5RUi9rJXEFqam6m-8gpMhY",
+  },
 ];
 
 export const Testimonials: React.FC = () => {
@@ -57,7 +63,9 @@ export const Testimonials: React.FC = () => {
                     className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg relative mx-4"
                   >
                     <Quote className="w-8 h-8 text-purple-500 mb-4" />
-                    <p className="text-gray-600 dark:text-gray-300 mb-6">{testimonial.content}</p>
+                    <p className="text-gray-600 dark:text-gray-300 mb-6">
+                      {testimonial.content}
+                    </p>
                     <div className="flex items-center">
                       <img
                         src={testimonial.image}
@@ -65,8 +73,12 @@ export const Testimonials: React.FC = () => {
                         className="w-12 h-12 rounded-full object-cover mr-4"
                       />
                       <div>
-                        <h4 className="font-semibold dark:text-white">{testimonial.name}</h4>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">{testimonial.role}</p>
+                        <h4 className="font-semibold dark:text-white">
+                          {testimonial.name}
+                        </h4>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">
+                          {testimonial.role}
+                        </p>
                       </div>
                     </div>
                   </motion.div>

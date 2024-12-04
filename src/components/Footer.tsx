@@ -1,6 +1,6 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail, Heart } from 'lucide-react';
+import React from "react";
+import { motion } from "framer-motion";
+import { Github, Linkedin, Mail, Heart } from "lucide-react";
 
 export const Footer: React.FC = () => {
   return (
@@ -9,10 +9,12 @@ export const Footer: React.FC = () => {
         <div className="grid md:grid-cols-3 gap-8 mb-8 md:px-6">
           <div>
             <h3 className="text-xl font-bold mb-4 text-white">Amrit Anand</h3>
-            <p className="mb-4">Transforming ideas into elegant solutions through code.</p>
+            <p className="mb-4">
+              Transforming ideas into elegant solutions through code.
+            </p>
             <div className="flex space-x-4">
               <a
-                href="https://github.com/yourusername"
+                href="https://github.com/Amritanand25"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-purple-400 transition-colors"
@@ -20,7 +22,7 @@ export const Footer: React.FC = () => {
                 <Github className="w-6 h-6" />
               </a>
               <a
-                href="https://linkedin.com/in/yourusername"
+                href="https://www.linkedin.com/in/amrit-anand-496298169/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-purple-400 transition-colors"
@@ -39,21 +41,43 @@ export const Footer: React.FC = () => {
             <h3 className="text-xl font-bold mb-4 text-white">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <a href="#about" className="hover:text-purple-400 transition-colors">About</a>
+                <a
+                  href="#about"
+                  className="hover:text-purple-400 transition-colors"
+                >
+                  About
+                </a>
               </li>
               <li>
-                <a href="#experience" className="hover:text-purple-400 transition-colors">Experience</a>
+                <a
+                  href="#experience"
+                  className="hover:text-purple-400 transition-colors"
+                >
+                  Experience
+                </a>
               </li>
               <li>
-                <a href="#projects" className="hover:text-purple-400 transition-colors">Projects</a>
+                <a
+                  href="#projects"
+                  className="hover:text-purple-400 transition-colors"
+                >
+                  Projects
+                </a>
               </li>
               <li>
-                <a href="#contact" className="hover:text-purple-400 transition-colors">Contact</a>
+                <a
+                  href="#contact"
+                  className="hover:text-purple-400 transition-colors"
+                >
+                  Contact
+                </a>
               </li>
             </ul>
           </div>
           <div>
-            <h3 className="text-xl font-bold mb-4 text-white">Developer Quote</h3>
+            <h3 className="text-xl font-bold mb-4 text-white">
+              Developer Quote
+            </h3>
             <blockquote className="italic">
               "Code is like humor. When you have to explain it, it's bad."
               <br />
@@ -67,7 +91,8 @@ export const Footer: React.FC = () => {
             whileInView={{ opacity: 1 }}
             className="flex items-center justify-center gap-2"
           >
-            Made with <Heart className="w-4 h-4 text-red-500" /> by Amrit Anand © {new Date().getFullYear()}
+            Made with <Heart className="w-4 h-4 text-red-500" /> by Amrit Anand
+            © {new Date().getFullYear()}
           </motion.p>
         </div>
       </div>

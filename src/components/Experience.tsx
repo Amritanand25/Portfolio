@@ -1,8 +1,11 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
-import 'react-vertical-timeline-component/style.min.css';
-import { Briefcase, Award, Code, Users } from 'lucide-react';
+import React from "react";
+import { motion } from "framer-motion";
+import {
+  VerticalTimeline,
+  VerticalTimelineElement,
+} from "react-vertical-timeline-component";
+import "react-vertical-timeline-component/style.min.css";
+import { Briefcase, Award, Code, Users } from "lucide-react";
 
 const experiences = [
   {
@@ -13,10 +16,10 @@ const experiences = [
     description: [
       "Developed PesoX, a Chrome extension for extracting data from LinkedIn and Gmail",
       "Built an intelligent tool using GPT-4 for advanced CSV calculations",
-      "Leading the development of PesoHQ using React, Next.js, Tailwind CSS"
+      "Leading the development of PesoHQ using React, Next.js, Tailwind CSS",
     ],
     color: "#8B5CF6",
-    icon: Code
+    icon: Code,
   },
   {
     company: "Smart Task",
@@ -26,10 +29,10 @@ const experiences = [
     description: [
       "Designed authentication systems and dynamic landing pages",
       "Implemented secure protocols, reducing login errors by 40%",
-      "Delivered high-quality products using React and Microsoft Azure AD-B2C"
+      "Delivered high-quality products using React and Microsoft Azure AD-B2C",
     ],
     color: "#EC4899",
-    icon: Users
+    icon: Users,
   },
   {
     company: "s759labs",
@@ -38,16 +41,16 @@ const experiences = [
     location: "Pune, Maharashtra",
     description: [
       "Developed school management system for EdRail.com and SkillCounty.com",
-      "Enhanced internal efficiency with an admin panel using Next.js and Material-UI"
+      "Enhanced internal efficiency with an admin panel using Next.js and Material-UI",
     ],
     color: "#3B82F6",
-    icon: Award
-  }
+    icon: Award,
+  },
 ];
 
 export const Experience: React.FC = () => {
   return (
-    <section className="py-20 dark:bg-gray-800 relative overflow-hidden">
+    <section id="experience" className="py-20 dark:bg-gray-800 relative overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {[...Array(20)].map((_, i) => (
@@ -55,8 +58,14 @@ export const Experience: React.FC = () => {
             key={i}
             className="absolute w-2 h-2 bg-purple-500 rounded-full opacity-20"
             animate={{
-              x: [Math.random() * window.innerWidth, Math.random() * window.innerWidth],
-              y: [Math.random() * window.innerHeight, Math.random() * window.innerHeight],
+              x: [
+                Math.random() * window.innerWidth,
+                Math.random() * window.innerWidth,
+              ],
+              y: [
+                Math.random() * window.innerHeight,
+                Math.random() * window.innerHeight,
+              ],
             }}
             transition={{
               duration: Math.random() * 10 + 10,
@@ -75,8 +84,12 @@ export const Experience: React.FC = () => {
           className="text-center mb-12"
         >
           <Briefcase className="w-12 h-12 mx-auto mb-4 text-purple-500" />
-          <h2 className="text-4xl font-bold dark:text-white">Professional Experience</h2>
-          <p className="text-gray-600 dark:text-gray-300 mt-2">My journey in the tech industry</p>
+          <h2 className="text-4xl font-bold dark:text-white">
+            Professional Experience
+          </h2>
+          <p className="text-gray-600 dark:text-gray-300 mt-2">
+            My journey in the tech industry
+          </p>
         </motion.div>
 
         <VerticalTimeline>
@@ -85,15 +98,15 @@ export const Experience: React.FC = () => {
               key={index}
               className="vertical-timeline-element--work"
               contentStyle={{
-                background: 'rgba(255, 255, 255, 0.05)',
-                backdropFilter: 'blur(10px)',
-                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                background: "rgba(255, 255, 255, 0.05)",
+                backdropFilter: "blur(10px)",
+                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
                 border: `2px solid ${exp.color}`,
-                borderRadius: '1rem',
+                borderRadius: "1rem",
               }}
               contentArrowStyle={{ borderRight: `7px solid ${exp.color}` }}
               date={exp.duration}
-              iconStyle={{ background: exp.color, color: '#fff' }}
+              iconStyle={{ background: exp.color, color: "#fff" }}
               icon={<exp.icon />}
             >
               <motion.div
