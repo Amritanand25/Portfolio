@@ -218,9 +218,10 @@ export const Contact: React.FC = () => {
                   type="text"
                   id="name"
                   name="name"
+                  placeholder="Name"
                   value={formData.name}
                   onChange={handleChange}
-                  className={`mt-1 block w-full rounded-md shadow-sm focus:ring-2 focus:ring-purple-500 dark:bg-gray-800 dark:text-white ${
+                  className={`mt-1 p-1 px-2 block w-full rounded-md shadow-sm focus:ring-2 focus:ring-purple-500 dark:bg-gray-800 dark:text-white ${
                     errors.name
                       ? "border-red-500"
                       : "border-gray-300 dark:border-gray-700"
@@ -241,9 +242,10 @@ export const Contact: React.FC = () => {
                   type="email"
                   id="email"
                   name="email"
+                  placeholder="Email"
                   value={formData.email}
                   onChange={handleChange}
-                  className={`mt-1 block w-full rounded-md shadow-sm focus:ring-2 focus:ring-purple-500 dark:bg-gray-800 dark:text-white ${
+                  className={`mt-1 p-1 px-2 block w-full rounded-md shadow-sm focus:ring-2 focus:ring-purple-500 dark:bg-gray-800 dark:text-white ${
                     errors.email
                       ? "border-red-500"
                       : "border-gray-300 dark:border-gray-700"
@@ -265,8 +267,9 @@ export const Contact: React.FC = () => {
                   name="message"
                   rows={4}
                   value={formData.message}
+                  placeholder="Message"
                   onChange={handleChange}
-                  className={`mt-1 block w-full rounded-md shadow-sm focus:ring-2 focus:ring-purple-500 dark:bg-gray-800 dark:text-white ${
+                  className={`mt-1 p-1 px-2 block w-full rounded-md shadow-sm focus:ring-2 focus:ring-purple-500 dark:bg-gray-800 dark:text-white ${
                     errors.message
                       ? "border-red-500"
                       : "border-gray-300 dark:border-gray-700"
